@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
+import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
 import PageNotFound from "./pages/PageNotFound";
 
@@ -23,7 +24,7 @@ function App() {
       <ScrollToTop />
       <Switch>
         <Route path="/" exact>
-          <Dashboard/>
+          <Dashboard sidebar={<Header/>}/>
         </Route>
         <Route path="*">
           <PageNotFound/>

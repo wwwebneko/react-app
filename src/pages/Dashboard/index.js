@@ -1,5 +1,11 @@
-export default function Dashboard() {
+import { ActiveProfileContextProvider } from "../../context/ActiveProfile";
+
+export default function Dashboard({ sidebar }) {
+
   return (
-    <h1>Dashboard</h1>
+    <ActiveProfileContextProvider>
+      {sidebar}
+    </ActiveProfileContextProvider>
+    
   )
 }
