@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+.start.zsh
+.DS_Store
