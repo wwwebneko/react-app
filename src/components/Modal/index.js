@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'; 
 import './styles.css';
 
-export default function Modal({ children, onModalClose }) {
+function Modal({ children, onModalClose }) {
   return (
     <div className="modal">
       <button className="modal-close-action" onClick={onModalClose}>X</button>
@@ -8,3 +9,13 @@ export default function Modal({ children, onModalClose }) {
     </div>
   )
 }
+
+Modal.propTypes = {
+  onModalClose: PropTypes.func.isRequired,
+  children: PropTypes.node
+}
+
+Modal.defaultProps = {};
+
+export default Modal;
+

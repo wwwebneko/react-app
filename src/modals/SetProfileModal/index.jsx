@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import useLocalStorage from "../../actions/useLocalStorage";
 import Modal from "../../components/Modal";
 import { useActiveProfileContext } from "../../context/ActiveProfile";
@@ -29,8 +30,10 @@ export default function SetProfileModal({ onModalClose }) {
         return (
           <p key={item.id}>
             <span>{item.name}</span>
+            <span>{item.gender}</span>
             <button onClick={() => setActiveProfile(item)}>Make active</button>
             <button onClick={() => handleProfileDelete(item)}>Remove</button>
+            <button onClick={() => handleProfileDelete(item)}>Edit</button>
           </p>
         )
       })
@@ -51,30 +54,60 @@ export default function SetProfileModal({ onModalClose }) {
     <Modal onModalClose={onModalClose}>
       {!profilesList.length && renderEmptyState()}
       {renderProfileList()}
-      {isFormVisible && <ProfileForm onFormSave={handleFormSave} />}
+      {isFormVisible && <ProfileForm onFormSave={handleFormSave} onFormCancel={() => setIsFormVisible(false)} />}
     </Modal>
   )
 }
 
-function ProfileForm({ onFormSave }) {
+function ProfileForm({ onFormSave, onFormCancel }) {
   const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
 
   function handleInput(e) {
     setName(e.target.value);
   }
 
+  function handleSelect(e) {
+    setGender(e.target.value);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    onFormSave({ name: name, id: Date.now() });
+    onFormSave({ name, gender, id: Date.now() });
     setName('');
+    setGender('');
   }
+
+  function handleBlur(e) { }
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        <input id="name" value={name} onChange={handleInput} />
-      </label>
+      <p>
+        <label htmlFor="name">Name</label>
+        <input id="name" value={name} onChange={handleInput} onBlur={handleBlur} />
+      </p>
+      <p>
+        <label htmlFor="gender">Gender</label>
+        <select id="gender" value={gender} onChange={handleSelect}>
+          <option disabled value="">Select</option>
+          <option value="F">Female</option>
+          <option value="M">Male</option>
+          <option value="O">Other</option>
+        </select>
+      </p>
+
+      <button onClick={onFormCancel}>cancel</button>
       <button type="submit">save</button>
     </form>
   )
 }
+
+SetProfileModal.propTypes = {
+  onModalClose: PropTypes.func.isRequired
+}
+
+ProfileForm.propTypes = {
+  onFormSave: PropTypes.func.isRequired,
+  onFormCancel: PropTypes.func.isRequired
+}
+
