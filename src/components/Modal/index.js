@@ -1,11 +1,18 @@
 import PropTypes from 'prop-types'; 
-import './styles.css';
+import styles from './index.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function Modal({ children, onModalClose }) {
   return (
-    <div className="modal">
-      <button className="modal-close-action" onClick={onModalClose}>X</button>
+    <div className={styles.modal}>
+      <span aria-hidden={true} onClick={onModalClose} className={styles.modalCancelCurtain}></span>
+      <div className={styles.modalBody}>
+        <button className={styles.modalCloseAction} onClick={onModalClose}>
+          <FontAwesomeIcon icon={faTimes} size="2x"/>
+        </button>
       {children}
+      </div>
     </div>
   )
 }

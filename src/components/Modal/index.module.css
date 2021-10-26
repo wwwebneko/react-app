@@ -1,0 +1,45 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: var(--size-xl);
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalCancelCurtain {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.modalBody {
+  position: relative;
+  width: 90vw;
+  max-width: 50rem;
+  min-height: 20rem;
+  padding: var(--size-m);
+  border-radius: var(--border-radius);
+  background-color: var(--foundation-light-1);
+  color: var(--contrast);
+  z-index: 500;
+}
+
+.modalCloseAction {
+  position: absolute;
+  right: var(--size-s);
+  top: var(--size-s);
+  padding: var(--size-s);
+  color: var(--contrast);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.modalCloseAction:hover {
+  opacity: 1;
+}

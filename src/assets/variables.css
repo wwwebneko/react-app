@@ -1,0 +1,14 @@
+:root {
+  /* sizes */
+  --size-s: 1rem;
+  --size-m: 2rem;
+  --size-l: 3rem;
+  --size-xl: 4rem;
+
+  --border-radius: 2rem;
+
+  /* colors */
+  --foundation: #29253c;
+  --foundation-light-1: #34324a;
+  --contrast: #fafafa;
+}

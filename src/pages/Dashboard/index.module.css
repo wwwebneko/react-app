@@ -1,0 +1,9 @@
+@import "./../../assets/variables.css";
+
+.main {
+  min-height: 100vh;
+  padding: var(--size-m);
+  margin-left: var(--size-xl);
+  background-color: var(--foundation);
+  color: var(--contrast);
+}
